@@ -1,0 +1,9 @@
+Overview do Projeto — Validação da Entropia de Boltzmann como Feature de Microestrutura para Classificação de Regimes de Risco em Criptoativos
+
+Este projeto propõe uma abordagem quantitativa para a classificação de regimes de risco no mercado de criptoativos, testado no Bitcoin. A proposta central é a utilização da Entropia de Boltzmann como uma feature de microestrutura capaz de antecipar períodos de alta volatilidade. A entropia é calculada com base na dispersão de preços em janelas móveis, funcionando como um proxy da atividade dos agentes no mercado. Essa métrica foi integrada a um conjunto de indicadores técnicos clássicos (MACD, RSI, ADX, etc.) e utilizada como entrada para um modelo de classificação binária via XGBoost.
+
+A base de dados foi construída com informações históricas de preços e volume entre 2015 e 2020, com o alvo definido como a volatilidade futura de 10 dias. O risco foi binarizado com base no percentil 75 da distribuição, classificando os 25% dias mais voláteis como “Risco Alto”. A divisão entre treino e teste foi feita de forma cronológica, respeitando o tempo como variável crítica.
+
+O modelo foi otimizado via Optuna, com hiperparâmetros fixados para reprodutibilidade. A performance final atingiu uma acurácia de 66%, F1 ponderado de 0.70 e recall de 68% para a classe de risco alto. A Entropia de Boltzmann se destacou como a feature mais relevante no XGBOOST, superando os demais indicadores. A matriz de confusão mostra que o modelo conseguiu identificar corretamente 26 dias de risco alto e 116 dias tranquilos, com 12 falsos negativos e 60 falsos positivos.
+
+Este código pode ser utilizado como base para sistemas de alerta de risco em criptoativos, com potencial de expansão para modelos sequenciais (LSTM/RNN) e integração com dados macroeconômicos e de sentimento de mercado.
